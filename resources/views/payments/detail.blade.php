@@ -46,8 +46,8 @@
                                 <p class="mb-0">Silakan transfer ke:</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-2">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <strong>{{ $tripayData['payment_name'] }}</strong>
+                                        <div class="d-flex align-items-center">
+                                            <strong><span class="me-2">{{ $tripayData['payment_name'] }}</span></strong>
                                         </div>
                                     </li>
                                     @if(strtolower($tripayData['payment_name']) === 'qris')
