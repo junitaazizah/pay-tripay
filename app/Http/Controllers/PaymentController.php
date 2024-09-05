@@ -163,4 +163,10 @@ class PaymentController extends Controller
 
         return [];
     }
+    public function checkStatus($id)
+    {
+        $payment = Payment::find($id);
+        // Logika untuk memeriksa status pembayaran
+        return response()->json(['status' => $payment->status]);
+    }
 }

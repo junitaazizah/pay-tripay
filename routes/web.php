@@ -26,3 +26,4 @@ Route::get('/payments/create', [App\Http\Controllers\PaymentController::class, '
 Route::post('/payments', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.store');
 Route::get('/payments/{payment}', [App\Http\Controllers\PaymentController::class, 'detail'])->name('payments.detail');
 Route::get('/payments/{payment}/check-status', [App\Http\Controllers\PaymentController::class, 'checkStatus'])->name('payments.check-status');
+Route::get('/payments/check-status/{id}', [App\Http\Controllers\PaymentController::class, 'checkStatus'])->name('payments.checkStatus');
