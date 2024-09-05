@@ -33,7 +33,11 @@
                 <tbody>
                     @forelse($payments as $payment)
                     <tr>
-                        <td>{{ $payment->merchant_ref }}</td>
+                        <td>
+                            <span class="badge bg-success">
+                                {{ $payment->merchant_ref }}
+                            </span>
+                        </td>
                         <td>{{ $payment->customer_name }}</td>
                         <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
                         <td>{{ $payment->method }}</td>
