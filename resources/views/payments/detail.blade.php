@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="payment-instructions" role="tabpanel" aria-labelledby="payment-instructions-tab">
-                            <div class="alert alert-info mt-3">
+                            <div class="alert alert-info mt-3 text-center">
                                 <h5 class="alert-heading">Instruksi Pembayaran</h5>
                                 <p class="mb-0">Silakan transfer ke:</p>
                                 <ul class="list-unstyled mt-2">
