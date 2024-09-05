@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Nomor Referensi: <span class="badge bg-success">{{ $payment->merchant_ref }}</span></h5>
-            <p class="card-text">Status: {{ $payment->status }}</p>
+            <p class="card-text">Status: <span class="badge bg-success">{{ $payment->status }}</span></p>
             <p class="card-text">Metode Pembayaran: {{ $tripayData['payment_name'] }}</p>
             <p class="card-text">Jumlah: Rp {{ number_format($payment->amount, 0, ',', '.') }}</p>
             <p class="card-text">Nama Pelanggan: {{ $payment->customer_name }}</p>
