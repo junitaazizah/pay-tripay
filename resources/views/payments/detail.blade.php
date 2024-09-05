@@ -31,7 +31,7 @@
                                             {{ ucfirst($payment->status) }}
                                         </span>
                                     </p>
-                                    <p><strong>Jumlah:</strong> Rp {{ number_format($payment->amount, 0, ',', '.') }}</p>
+                                    <p><strong>Jumlah:</strong> Rp {{ number_format($tripayData['amount'], 0, ',', '.') }}</p>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h5 class="text-muted mb-3">Informasi Pelanggan</h5>
