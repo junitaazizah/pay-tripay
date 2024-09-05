@@ -24,7 +24,8 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::latest()->paginate(10);
-        return view('payments.index', compact('payments'));
+        $channels = $this->getPaymentChannels();
+        return view('payments.index', compact('payments', 'channels'));
     }
 
     public function create()
