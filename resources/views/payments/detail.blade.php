@@ -47,7 +47,7 @@
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-2">
                                         <div class="d-flex align-items-center">
-                                            <strong><span class="me-2">{{ $tripayData['payment_name'] }}</span></strong>
+                                            <strong>{{ $tripayData['payment_name'] }}</strong>
                                         </div>
                                     </li>
                                     @if(strtolower($tripayData['payment_name']) === 'qris')
