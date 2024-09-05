@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //csrf token
 Route::get('/csrf-token', function () {
     return response()->json(['csrf_token' => csrf_token()]);
@@ -25,7 +21,7 @@ Route::get('/csrf-token', function () {
 Route::post('/create-payment', [App\Http\Controllers\PaymentController::class, 'createPayment']);
 Route::post('/tripay-callback', [App\Http\Controllers\PaymentController::class, 'callback']);
 
-Route::get('/payments', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments.index');
+Route::get('/', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments.index');
 Route::get('/payments/create', [App\Http\Controllers\PaymentController::class, 'create'])->name('payments.create');
 Route::post('/payments', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.store');
 Route::get('/payments/{payment}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show');
