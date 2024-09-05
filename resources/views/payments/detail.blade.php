@@ -82,6 +82,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    @endif
                                 </ul>
                                 <p class="mt-3 mb-0"><strong>Batas Waktu Pembayaran:</strong></p>
                                 <p class="text-danger">{{ \Carbon\Carbon::parse($tripayData['expired_time'])->format('d M Y H:i') }}</p>
