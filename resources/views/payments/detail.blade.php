@@ -108,58 +108,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="{{ route('payments.index') }}" class="btn btn-secondary">Kembali ke Daftar</a>
-                    @if($payment->status == 'Pending')
-                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#paymentStatusModalPending">Cek Status Pembayaran</button>
-                    @elseif($payment->status === 'Paid')
-                    <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#paymentStatusModalPaid">Lihat Detail Pembayaran</button>
-                    @endif
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for Pending Status -->
-<div class="modal fade" id="paymentStatusModalPending" tabindex="-1" aria-labelledby="paymentStatusModalPendingLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="paymentStatusModalPendingLabel">Status Pembayaran (Pending)</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>No. Referensi:</strong> {{ $payment->merchant_ref }}</p>
-                <p><strong>Status:</strong> {{ ucfirst($payment->status) }}</p>
-                <p><strong>Jumlah:</strong> Rp {{ number_format($payment->amount, 0, ',', '.') }}</p>
-                <p><strong>Nama Pelanggan:</strong> {{ $payment->customer_name }}</p>
-                <p><strong>Email Pelanggan:</strong> {{ $payment->customer_email }}</p>
-                <p><strong>Batas Waktu Pembayaran:</strong> {{ \Carbon\Carbon::parse($tripayData['expired_time'])->format('d M Y H:i') }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for Paid Status -->
-<div class="modal fade" id="paymentStatusModalPaid" tabindex="-1" aria-labelledby="paymentStatusModalPaidLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="paymentStatusModalPaidLabel">Detail Pembayaran (Sudah Lunas)</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>No. Referensi:</strong> {{ $payment->merchant_ref }}</p>
-                <p><strong>Status:</strong> Sudah Lunas</p>
-                <p><strong>Jumlah:</strong> Rp {{ number_format($payment->amount, 0, ',', '.') }}</p>
-                <p><strong>Nama Pelanggan:</strong> {{ $payment->customer_name }}</p>
-                <p><strong>Email Pelanggan:</strong> {{ $payment->customer_email }}</p>
-                <p><strong>Tanggal Pembayaran:</strong> {{ $payment->updated_at->format('d M Y H:i') }}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
