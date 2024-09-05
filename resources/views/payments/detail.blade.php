@@ -46,7 +46,7 @@
                                 <p class="mb-0">Silakan transfer ke:</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-2">
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center justify-content-between">
                                             <strong>{{ $tripayData['payment_name'] }}</strong>
                                         </div>
                                     </li>
