@@ -69,9 +69,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('payments.index') }}">Daftar Pembayaran</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('payments.create') }}">Buat Pembayaran</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -86,11 +83,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('payments.index') }}">
                                 <i class="fas fa-list-ul"></i> Daftar Pembayaran
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('payments.create') }}">
-                                <i class="fas fa-plus-circle"></i> Buat Pembayaran
                             </a>
                         </li>
                         <!-- Tambahkan menu lain sesuai kebutuhan -->
