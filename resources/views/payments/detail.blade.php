@@ -63,10 +63,6 @@
                                                 <strong>Nomor Rekening:</strong>
                                                 <div>
                                                     <span id="payCode" class="me-2">{{ $tripayData['pay_code'] }}</span>
-                                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('payCode', this)">
-                                                        <i class="fas fa-copy"></i>
-                                                    </button>
-                                                    <span class="copy-feedback" style="display: none; color: green; margin-left: 5px;">Disalin</span>
                                                 </div>
                                             </div>
                                         </li>
@@ -75,10 +71,6 @@
                                                 <strong>Jumlah Transfer:</strong>
                                                 <div>
                                                     <span id="amount" class="me-2">Rp {{ number_format($tripayData['amount'], 0, ',', '.') }}</span>
-                                                    <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('amount', this)">
-                                                        <i class="fas fa-copy"></i>
-                                                    </button>
-                                                    <span class="copy-feedback" style="display: none; color: green; margin-left: 5px;">Disalin</span>
                                                 </div>
                                             </div>
                                         </li>
