@@ -32,7 +32,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="method" class="form-label">Metode Pembayaran</label>
-                        <select class="form-select" id="method" name="method" required>
+                        <select class="form-select" id="method" name="payment_method" required>
                             <option value="">Pilih metode...</option>
                             <option value="transfer">Transfer Bank</option>
                             <option value="credit_card">Kartu Kredit</option>
