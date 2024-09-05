@@ -49,12 +49,13 @@
                             <td>{{ $payment->created_at->format('d M Y H:i') }}</td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('payments.show', $payment) }}" class="btn btn-sm btn-outline-info">
+                                    @if($payment->status === 'Paid')
+                                    <a href="{{ route('payments.detail', $payment) }}" class="btn btn-sm btn-outline-info">
                                         <i class="fas fa-eye"></i> Detail
                                     </a>
-                                    @if($payment->status === 'pending')
-                                    <a href="{{ route('payments.check-status', $payment) }}" class="btn btn-sm btn-outline-warning">
-                                        <i class="fas fa-sync-alt"></i> Cek Status
+                                    @elseif($payment->status === 'Pending')
+                                    <a href="{{ route('payments.detail', $payment) }}" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-eye text-danger"></i> Bayar
                                     </a>
                                     @endif
                                 </div>

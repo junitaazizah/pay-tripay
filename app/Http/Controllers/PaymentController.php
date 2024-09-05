@@ -28,12 +28,6 @@ class PaymentController extends Controller
         return view('payments.index', compact('payments', 'channels'));
     }
 
-    public function create()
-    {
-        $channels = $this->getPaymentChannels();
-        return view('payments.create', compact('channels'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -82,13 +76,13 @@ class PaymentController extends Controller
                 'order_items' => json_encode($data['order_items']),
             ]);
 
-            return redirect()->route('payments.show', $payment);
+            return redirect()->route('payments.detail', $payment);
         } else {
             return back()->withErrors('Gagal membuat transaksi. Silakan coba lagi.');
         }
     }
 
-    public function show(Payment $payment)
+    public function detail(Payment $payment)
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->apiKey
@@ -168,30 +162,5 @@ class PaymentController extends Controller
         }
 
         return [];
-    }
-
-    public function checkStatus(Payment $payment)
-    {
-        $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $this->apiKey
-        ])->get($this->apiUrl . '/transaction/detail', [
-            'reference' => $payment->tripay_reference
-        ]);
-
-        if ($response->successful()) {
-            $tripayData = $response->json()['data'];
-            $newStatus = strtolower($tripayData['status']);
-
-            if ($newStatus !== $payment->status) {
-                $payment->update([
-                    'status' => $newStatus,
-                    'paid_at' => $newStatus === 'paid' ? now() : null
-                ]);
-            }
-
-            return redirect()->route('payments.show', $payment)->with('success', 'Status pembayaran telah diperbarui.');
-        }
-
-        return redirect()->route('payments.show', $payment)->with('error', 'Gagal memeriksa status pembayaran.');
     }
 }

@@ -24,5 +24,5 @@ Route::post('/tripay-callback', [App\Http\Controllers\PaymentController::class, 
 Route::get('/', [App\Http\Controllers\PaymentController::class, 'index'])->name('payments.index');
 Route::get('/payments/create', [App\Http\Controllers\PaymentController::class, 'create'])->name('payments.create');
 Route::post('/payments', [App\Http\Controllers\PaymentController::class, 'store'])->name('payments.store');
-Route::get('/payments/{payment}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payments.show');
+Route::get('/payments/bayar/{payment}', [App\Http\Controllers\PaymentController::class, 'detail'])->name('payments.detail');
 Route::get('/payments/{payment}/check-status', [App\Http\Controllers\PaymentController::class, 'checkStatus'])->name('payments.check-status');
