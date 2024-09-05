@@ -6,9 +6,9 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Daftar Pembayaran</h2>
-        <a href="{{ route('payments.create') }}" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
             <i class="fas fa-plus-circle"></i> Buat Pembayaran Baru
-        </a>
+        </button>
     </div>
 
     @if(session('success'))
@@ -75,6 +75,7 @@
         {{ $payments->links() }}
     </div>
 </div>
+@include('payments.modal.add-modal')
 @endsection
 
 @push('styles')
