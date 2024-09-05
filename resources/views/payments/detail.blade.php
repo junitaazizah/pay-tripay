@@ -47,7 +47,6 @@
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-2">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('images/payment-logos/' . strtolower($tripayData['payment_name']) . '.png') }}" alt="{{ $tripayData['payment_name'] }}" class="me-2" style="height: 24px; width: auto;">
                                             <strong>{{ $tripayData['payment_name'] }}</strong>
                                         </div>
                                     </li>
