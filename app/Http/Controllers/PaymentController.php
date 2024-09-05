@@ -97,7 +97,7 @@ class PaymentController extends Controller
 
         if ($response->successful()) {
             $tripayData = $response->json()['data'];
-            return view('payments.show', compact('payment', 'tripayData'));
+            return view('payments.detail', compact('payment', 'tripayData'));
         } else {
             return back()->withErrors('Gagal mengambil detail transaksi.');
         }

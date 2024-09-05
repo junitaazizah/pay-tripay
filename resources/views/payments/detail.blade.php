@@ -26,5 +26,8 @@
             @endif
         </div>
     </div>
+    <div class="mt-4">
+        <a href="{{ route('payments.index') }}" class="btn btn-primary">Kembali</a>
+    </div>
 </div>
 @endsection
