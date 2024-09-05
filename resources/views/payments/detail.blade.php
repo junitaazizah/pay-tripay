@@ -48,6 +48,7 @@
                                     <ul class="list-unstyled mt-2">
                                         <li class="mb-2">
                                             <div class="py-2">
+                                                <img src="{{ $tripayData['icon_url'] }}" alt="{{ $tripayData['payment_name'] }} Icon" class="me-2" style="max-width: 30px;">
                                                 <strong>{{ $tripayData['payment_name'] }}</strong>
                                             </div>
                                         </li>
