@@ -9,7 +9,6 @@
     @if(empty($channels))
     <div class="alert alert-warning">Tidak ada channel pembayaran yang tersedia.</div>
     @else
-    <pre>{{ print_r($channels, true) }}</pre>
     @endif
 
     @if ($errors->any())
