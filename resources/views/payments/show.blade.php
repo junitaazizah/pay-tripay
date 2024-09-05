@@ -16,7 +16,7 @@
         <div class="card-body">
             <h5 class="card-title">Nomor Referensi: {{ $payment->merchant_ref }}</h5>
             <p class="card-text"><strong>Status:</strong>
-                <span class="badge bg-{{ $payment->status === 'paid' ? 'success' : ($payment->status === 'pending' ? 'warning' : 'danger') }}">
+                <span class="badge bg-{{ $payment->status === 'paid' ? 'success' : ($payment->status === 'pending' ? 'danger' : 'secondary') }}">
                     {{ ucfirst($payment->status) }}
                 </span>
             </p>
