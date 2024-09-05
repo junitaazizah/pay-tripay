@@ -21,6 +21,12 @@ class PaymentController extends Controller
         $this->apiUrl = config('tripay.api_url');
     }
 
+    public function index()
+    {
+        $payments = Payment::latest()->paginate(10);
+        return view('payments.index', compact('payments'));
+    }
+
     public function create()
     {
         $channels = $this->getPaymentChannels();
