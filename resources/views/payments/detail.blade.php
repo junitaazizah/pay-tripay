@@ -51,13 +51,6 @@
                                             <strong>{{ $tripayData['payment_name'] }}</strong>
                                         </div>
                                     </li>
-                                    @if(strtolower($tripayData['payment_name']) === 'qris')
-                                    <li class="mb-2">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <img src="{{ $tripayData['qr_url'] }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
-                                        </div>
-                                    </li>
-                                    @else
                                     <li class="mb-2">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <span><strong>Nomor Rekening:</strong></span>
@@ -82,7 +75,6 @@
                                             </div>
                                         </div>
                                     </li>
-                                    @endif
                                 </ul>
                                 <p class="mt-3 mb-0"><strong>Batas Waktu Pembayaran:</strong></p>
                                 <p class="text-danger">{{ \Carbon\Carbon::parse($tripayData['expired_time'])->format('d M Y H:i') }}</p>
@@ -110,7 +102,7 @@
                 <div class="card-footer">
                     <a href="{{ route('payments.index') }}" class="btn btn-secondary">Kembali ke Daftar</a>
                     @if($payment->status == 'Pending')
-                    <button type="button" class="btn btn-primary float-end" onclick="checkPaymentStatus(this)">Cek Status Pembayaran</button>
+                    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#paymentStatusModalPending">Cek Status Pembayaran</button>
                     @elseif($payment->status === 'Paid')
                     <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#paymentStatusModalPaid">Lihat Detail Pembayaran</button>
                     @endif
@@ -180,31 +172,6 @@
         }, function(err) {
             console.error('Gagal menyalin teks: ', err);
         });
-    }
-
-    function checkPaymentStatus(button) {
-        // Tampilkan animasi loading
-        button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Memeriksa...';
-        button.disabled = true;
-
-        fetch('{{ route("payments.checkStatus", $payment->id) }}')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'Paid') {
-                    location.reload();
-                } else {
-                    alert('Status pembayaran masih pending.');
-                    // Sembunyikan animasi loading
-                    button.innerHTML = 'Cek Status Pembayaran';
-                    button.disabled = false;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Sembunyikan animasi loading
-                button.innerHTML = 'Cek Status Pembayaran';
-                button.disabled = false;
-            });
     }
 </script>
 @endpush
