@@ -51,6 +51,13 @@
                                             <strong>{{ $tripayData['payment_name'] }}</strong>
                                         </div>
                                     </li>
+                                    @if(strtolower($tripayData['payment_name']) === 'qris')
+                                    <li class="mb-2">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <img src="{{ $tripayData['qr_url'] }}" alt="QR Code" class="img-fluid" style="max-width: 200px;">
+                                        </div>
+                                    </li>
+                                    @else
                                     <li class="mb-2">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <span><strong>Nomor Rekening:</strong></span>
@@ -75,6 +82,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    @endif
                                 </ul>
                                 <p class="mt-3 mb-0"><strong>Batas Waktu Pembayaran:</strong></p>
                                 <p class="text-danger">{{ \Carbon\Carbon::parse($tripayData['expired_time'])->format('d M Y H:i') }}</p>
