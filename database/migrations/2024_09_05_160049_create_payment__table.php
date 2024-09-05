@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('merchant_ref')->unique();
             $table->string('tripay_reference')->nullable();
             $table->string('method');
