@@ -47,10 +47,6 @@
             <p><strong>Batas Waktu Pembayaran:</strong> {{ \Carbon\Carbon::parse($tripayData['expired_time'])->format('d M Y H:i') }}</p>
             @endif
 
-            @if($payment->status === 'pending')
-            <a href="{{ route('payments.check-status', $payment) }}" class="btn btn-info mt-3">Periksa Status Pembayaran</a>
-            @endif
-
             @if($payment->status === 'paid')
             <hr>
             <h6 class="mt-4">Informasi Pembayaran:</h6>
