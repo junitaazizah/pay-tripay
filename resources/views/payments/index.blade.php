@@ -4,68 +4,79 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mb-4">Daftar Pembayaran</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Daftar Pembayaran</h2>
+        <a href="{{ route('payments.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Buat Pembayaran Baru
+        </a>
+    </div>
 
     @if(session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
-    <div class="mb-3">
-        <a href="{{ route('payments.create') }}" class="btn btn-primary">Buat Pembayaran Baru</a>
-    </div>
-
-    <div class="card">
+    <div class="card shadow-sm">
         <div class="card-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>No. Referensi</th>
-                        <th>Pelanggan</th>
-                        <th>Jumlah</th>
-                        <th>Metode</th>
-                        <th>Status</th>
-                        <th>Tanggal</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($payments as $payment)
-                    <tr>
-                        <td>
-                            <span class="badge bg-success">
-                                {{ $payment->merchant_ref }}
-                            </span>
-                        </td>
-                        <td>{{ $payment->customer_name }}</td>
-                        <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
-                        <td>{{ $payment->method }}</td>
-                        <td>
-                            <span class="badge bg-{{ $payment->status === 'paid' ? 'success' : ($payment->status === 'pending' ? 'danger' : 'secondary') }}">
-                                {{ ucfirst($payment->status) }}
-                            </span>
-                        </td>
-                        <td>{{ $payment->created_at->format('d M Y H:i') }}</td>
-                        <td>
-                            <a href="{{ route('payments.show', $payment) }}" class="btn btn-sm btn-info">Detail</a>
-                            @if($payment->status === 'pending')
-                            <a href="{{ route('payments.check-status', $payment) }}" class="btn btn-sm btn-warning">Cek Status</a>
-                            @endif
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td colspan="7" class="text-center">Tidak ada data pembayaran.</td>
-                    </tr>
-                    @endforelse
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No. Referensi</th>
+                            <th>Pelanggan</th>
+                            <th>Jumlah</th>
+                            <th>Metode</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($payments as $payment)
+                        <tr>
+                            <td><span class="badge bg-primary">{{ $payment->merchant_ref }}</span></td>
+                            <td>{{ $payment->customer_name }}</td>
+                            <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
+                            <td>{{ $payment->method }}</td>
+                            <td>
+                                @php
+                                $statusClass = $payment->status === 'Paid' ? 'success' : ($payment->status === 'Pending' ? 'warning' : 'secondary');
+                                @endphp
+                                <span class="badge bg-{{ $statusClass }}">{{ ucfirst($payment->status) }}</span>
+                            </td>
+                            <td>{{ $payment->created_at->format('d M Y H:i') }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('payments.show', $payment) }}" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-eye"></i> Detail
+                                    </a>
+                                    @if($payment->status === 'pending')
+                                    <a href="{{ route('payments.check-status', $payment) }}" class="btn btn-sm btn-outline-warning">
+                                        <i class="fas fa-sync-alt"></i> Cek Status
+                                    </a>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="text-center py-4">Tidak ada data pembayaran.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4 d-flex justify-content-center">
         {{ $payments->links() }}
     </div>
 </div>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+@endpush

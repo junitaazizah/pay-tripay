@@ -12,20 +12,26 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
+        body {
+            padding-top: 56px;
+            /* Sesuaikan dengan tinggi navbar */
+        }
+
         .sidebar {
             position: fixed;
-            top: 0;
+            top: 56px;
+            /* Sesuaikan dengan tinggi navbar */
             bottom: 0;
             left: 0;
             z-index: 100;
-            padding: 48px 0 0;
+            padding: 20px 0 0;
             box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
         }
 
         .sidebar-sticky {
-            position: relative;
+            position: sticky;
             top: 0;
-            height: calc(100vh - 48px);
+            height: calc(100vh - 76px);
             padding-top: .5rem;
             overflow-x: hidden;
             overflow-y: auto;
@@ -33,11 +39,13 @@
 
         .content {
             margin-left: 240px;
+            padding-top: 20px;
         }
 
         @media (max-width: 767.98px) {
             .sidebar {
-                top: 5rem;
+                top: 56px;
+                padding-top: 0;
             }
 
             .content {
@@ -69,31 +77,33 @@
         </div>
     </nav>
 
-    <!-- Sidebar -->
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3 sidebar-sticky">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('payments.index') }}">
-                        <i class="fas fa-list-ul"></i> Daftar Pembayaran
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('payments.create') }}">
-                        <i class="fas fa-plus-circle"></i> Buat Pembayaran
-                    </a>
-                </li>
-                <!-- Tambahkan menu lain sesuai kebutuhan -->
-            </ul>
-        </div>
-    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3 sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('payments.index') }}">
+                                <i class="fas fa-list-ul"></i> Daftar Pembayaran
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('payments.create') }}">
+                                <i class="fas fa-plus-circle"></i> Buat Pembayaran
+                            </a>
+                        </li>
+                        <!-- Tambahkan menu lain sesuai kebutuhan -->
+                    </ul>
+                </div>
+            </nav>
 
-    <!-- Content -->
-    <main class="content py-4">
-        <div class="container-fluid">
-            @yield('content')
+            <!-- Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
+                @yield('content')
+            </main>
         </div>
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer mt-auto py-3 bg-light">
