@@ -87,7 +87,7 @@ class PaymentController extends Controller
                 'order_items' => json_encode($data['order_items']),
             ]);
 
-            return redirect()->route('payments.detail', $payment);
+            return redirect()->route('payments.bayar', $payment);
         } else {
             return back()->withErrors('Gagal membuat transaksi. Silakan coba lagi.');
         }

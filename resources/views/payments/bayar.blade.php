@@ -7,8 +7,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm rounded">
-                <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">Detail Pembayaran <span class="badge bg-danger">{{ $payment->status }}</span></h4>
+                <div class="card-header {{ $payment->status === 'Paid' ? 'bg-success' : 'bg-warning' }} text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">
+                        @if($payment->status === 'Paid')
+                        <span class="badge bg-primary text-white">Riwayat Pembayaran</span>
+                        @else
+                        <span class="badge bg-primary text-white">Detail Pembayaran</span><span class="badge bg-danger">{{ ucfirst($payment->status) }}</span>
+                        @endif
+                    </h4>
                     <span class="badge bg-light text-dark">{{ \Carbon\Carbon::parse($payment->created_at)->format('d M Y, H:i') }}</span>
                 </div>
                 <div class="card-body">
@@ -26,11 +32,25 @@
                     <div class="tab-content mt-4" id="paymentDetailsTabContent">
                         <!-- Detail Pembayaran Tab -->
                         <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                            @if($payment->status === 'Pending')
                             <div class="text-center mb-4">
                                 <i class="fas fa-exclamation-circle text-warning" style="font-size: 80px;"></i>
                                 <h5 class="mt-3">Pembayaran Anda Masih Dalam Proses</h5>
                                 <p class="text-muted">Silakan tunggu hingga pembayaran selesai diproses.</p>
                             </div>
+                            @elseif($payment->status === 'Paid')
+                            <div class="text-center mb-4">
+                                <i class="fas fa-check-circle text-success" style="font-size: 80px;"></i>
+                                <h5 class="mt-3">Pembayaran Anda Telah Selesai</h5>
+                                <p class="text-muted">Terima kasih, pembayaran Anda telah berhasil diproses.</p>
+                            </div>
+                            @else
+                            <div class="text-center mb-4">
+                                <i class="fas fa-question-circle text-secondary" style="font-size: 80px;"></i>
+                                <h5 class="mt-3">Status Pembayaran Tidak Dikenal</h5>
+                                <p class="text-muted">Hubungi kami untuk informasi lebih lanjut.</p>
+                            </div>
+                            @endif
 
                             <!-- Transaction Information -->
                             <div class="row mb-4">
@@ -42,20 +62,42 @@
                                             <span class="badge bg-primary">{{ $payment->merchant_ref }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <strong>Kategori</strong>
+                                            <span class="badge bg-primary text-white">{{ $payment->payment_kategori }}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <strong>Status:</strong>
-                                            <span class="badge bg-warning text-dark">{{ ucfirst($payment->status) }}</span>
+                                            <span class="badge bg-{{ $payment->status === 'Paid' ? 'primary' : ($payment->status === 'Pending' ? 'warning' : 'secondary') }} text-white">
+                                                {{ $payment->status === 'Paid' ? 'Sudah Bayar' : ($payment->status === 'Pending' ? 'Belum Bayar' : 'Tidak Dikenal') }}
+                                            </span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <strong>Pembayaran</strong>
                                             <span class="badge bg-primary text-white">{{ $tripayData['payment_name'] }}</span>
                                         </li>
+                                        <!-- Payment Info Based on Status -->
+                                        @if($payment->status === 'Pending')
+                                        @if(strtolower($tripayData['payment_name']) === 'qris')
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <strong>Rekening</strong>
+                                            <strong>QR Code:</strong>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ $tripayData['qr_url'] }}" alt="QR Code" class="img-fluid" style="max-width: 150px;">
+                                            </div>
+                                        </li>
+                                        @else
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <strong>Rekening:</strong>
                                             <span class="badge bg-primary text-white">{{ $tripayData['pay_code'] }}</span>
                                         </li>
+                                        @endif
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <strong>Batas Pembayaran:</strong>
+                                            <span class="badge bg-danger text-white">{{ \Carbon\Carbon::parse($tripayData['expired_time'])->format('d M Y H:i') }}</span>
+                                        </li>
+                                        @endif
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <strong>Jumlah:</strong>
-                                            Rp {{ number_format($tripayData['amount'], 0, ',', '.') }}
+                                            <span class="badge bg-primary text-white"> Rp {{ number_format($tripayData['amount'], 0, ',', '.') }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -66,11 +108,11 @@
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <strong>Nama:</strong>
-                                            {{ $payment->customer_name }}
+                                            <span class="badge bg-primary text-white">{{ $payment->customer_name }}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <strong>Email:</strong>
-                                            {{ $payment->customer_email }}
+                                            <span class="badge bg-primary text-white">{{ $payment->customer_email }}</span>
                                         </li>
                                     </ul>
                                 </div>
