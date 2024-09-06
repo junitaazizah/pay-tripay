@@ -24,6 +24,13 @@
                         </div>
                     </div>
                     <div class="mb-3">
+                        <label>Kategori pembayaraan</label>
+                        <select name="payment_kategori" class="form-select">
+                            <option value="#">Silahkan Pilih</option>
+                            <option value="BPJS PESERTA MAGANG">BPJS PESERTA MAGANG</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="amount" class="form-label">Jumlah</label>
                         <div class="input-group">
                             <span class="input-group-text">Rp</span>

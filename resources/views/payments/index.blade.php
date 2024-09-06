@@ -6,9 +6,14 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Daftar Pembayaran</h2>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
-            <i class="fas fa-plus-circle"></i> Buat Pembayaran Baru
-        </button>
+        <div>
+            <a href="{{ route('payments.reset') }}" class="btn btn-warning">
+                <i class="fas fa-redo"></i> Reset Semua
+            </a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPaymentModal">
+                <i class="fas fa-plus-circle"></i> Buat Pembayaran Baru
+            </button>
+        </div>
     </div>
 
     @if(session('success'))

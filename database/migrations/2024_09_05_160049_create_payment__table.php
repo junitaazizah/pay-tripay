@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('customer_name');
             $table->string('customer_email');
+            $table->string('payment_kategori');
             $table->json('order_items');
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

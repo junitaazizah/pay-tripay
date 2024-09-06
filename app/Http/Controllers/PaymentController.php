@@ -27,6 +27,15 @@ class PaymentController extends Controller
         $channels = $this->getPaymentChannels();
         return view('payments.index', compact('payments', 'channels'));
     }
+    public function resetPayments()
+    {
+        // Menghapus semua data pada model Payment
+        Payment::truncate();
+
+        // Redirect kembali ke halaman daftar pembayaran dengan pesan sukses
+        return redirect()->route('payments.index')->with('success', 'Semua data pembayaran telah dihapus.');
+    }
+
 
     public function store(Request $request)
     {
@@ -35,6 +44,7 @@ class PaymentController extends Controller
             'customer_name' => 'required|string',
             'customer_email' => 'required|email',
             'payment_method' => 'required|string',
+            'payment_kategori' => 'required|string',
         ]);
 
         $merchantRef = 'INV-' . time();
@@ -73,6 +83,7 @@ class PaymentController extends Controller
                 'status' => 'pending',
                 'customer_name' => $request->customer_name,
                 'customer_email' => $request->customer_email,
+                'payment_kategori' => $request->payment_kategori,
                 'order_items' => json_encode($data['order_items']),
             ]);
 

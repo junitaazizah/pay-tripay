@@ -20,6 +20,7 @@ class Payment extends Model
         'customer_email',
         'order_items',
         'paid_at',
+        'payment_kategori'
     ];
 
     protected $casts = [
