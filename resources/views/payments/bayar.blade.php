@@ -23,9 +23,12 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="detail-tab" data-bs-toggle="tab" data-bs-target="#detail" type="button" role="tab" aria-controls="detail" aria-selected="true">Detail Pembayaran</button>
                         </li>
+                        @if($payment->status === 'Pending')
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="payment-instructions-tab" data-bs-toggle="tab" data-bs-target="#payment-instructions" type="button" role="tab" aria-controls="instruction" aria-selected="false">Instruksi Pembayaran</button>
                         </li>
+                        @elseif
+                        @endif
                     </ul>
 
                     <!-- Tabs Content -->
