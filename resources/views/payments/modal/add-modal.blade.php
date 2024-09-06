@@ -13,13 +13,13 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="customer_name" class="form-label">Nama Pelanggan</label>
-                                <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Masukkan Nama lengkap" required>
+                                <input type="text" class="form-control" id="customer_name" name="customer_name" value="Muhamad Widyantoro" placeholder="Masukkan Nama lengkap" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="customer_email" class="form-label">Email Pelanggan</label>
-                                <input type="email" class="form-control" id="customer_email" name="customer_email" placeholder="Masukkan Email Aktif" required>
+                                <input type="email" class="form-control" id="customer_email" name="customer_email" value="contoh@gmail.com" placeholder="Masukkan Email Aktif" required>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <label for="amount" class="form-label">Jumlah</label>
                         <div class="input-group">
                             <span class="input-group-text">Rp</span>
-                            <input type="number" class="form-control" id="amount" name="amount" min="0" step="1000" placeholder="Masukan Nominal" required>
+                            <input type="number" class="form-control" id="amount" name="amount" min="0" step="1000" value="100000" placeholder="Masukan Nominal" required>
                         </div>
                     </div>
                     <div class="mb-3">
