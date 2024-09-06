@@ -14,38 +14,50 @@
     <style>
         body {
             padding-top: 56px;
-            /* Sesuaikan dengan tinggi navbar */
         }
 
-        .sidebar {
-            position: fixed;
-            top: 56px;
-            /* Sesuaikan dengan tinggi navbar */
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-            padding: 20px 0 0;
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        .navbar-brand {
+            font-weight: bold;
         }
 
-        .sidebar-sticky {
-            position: sticky;
-            top: 0;
-            height: calc(100vh - 76px);
-            padding-top: .5rem;
-            overflow-x: hidden;
-            overflow-y: auto;
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+
+        .footer .text-muted {
+            margin: 0;
         }
 
         .content {
-            margin-left: 240px;
-            padding-top: 20px;
+            padding: 20px 0;
+        }
+
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 240px;
+            overflow-y: auto;
+        }
+
+        .sidebar .nav-link {
+            color: #333;
+        }
+
+        .sidebar .nav-link.active {
+            font-weight: bold;
+            color: #007bff;
         }
 
         @media (max-width: 767.98px) {
             .sidebar {
-                top: 56px;
-                padding-top: 0;
+                width: 100%;
+                height: auto;
+                position: relative;
             }
 
             .content {
@@ -70,6 +82,20 @@
                         <a class="nav-link" href="{{ route('payments.index') }}">Daftar Pembayaran</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ms-auto">
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                    @endguest
+                </ul>
             </div>
         </div>
     </nav>
@@ -77,11 +103,11 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="position-sticky pt-3 sidebar-sticky">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('payments.index') }}">
+                            <a class="nav-link active" href="{{ route('payments.index') }}">
                                 <i class="fas fa-list-ul"></i> Daftar Pembayaran
                             </a>
                         </li>
@@ -98,7 +124,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="footer mt-auto py-3">
         <div class="container text-center">
             <span class="text-muted">© {{ date('Y') }} Aplikasi Pembayaran. All rights reserved.</span>
         </div>
