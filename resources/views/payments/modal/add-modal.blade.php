@@ -27,7 +27,7 @@
                         <label>Kategori pembayaraan</label>
                         <select name="payment_kategori" class="form-select">
                             <option value="#">Silahkan Pilih</option>
-                            <option value="BPJS PESERTA MAGANG">DUMMY</option>
+                            <option value="DUMMY">DUMMY</option>
                         </select>
                     </div>
                     <div class="mb-3">
