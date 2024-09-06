@@ -27,7 +27,7 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="payment-instructions-tab" data-bs-toggle="tab" data-bs-target="#payment-instructions" type="button" role="tab" aria-controls="instruction" aria-selected="false">Instruksi Pembayaran</button>
                         </li>
-                        @elseif
+                        @else
                         @endif
                     </ul>
 
