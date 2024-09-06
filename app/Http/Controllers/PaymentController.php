@@ -93,6 +93,21 @@ class PaymentController extends Controller
         }
     }
 
+    public function bayar(Payment $payment)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $this->apiKey
+        ])->get($this->apiUrl . '/transaction/detail', [
+            'reference' => $payment->tripay_reference
+        ]);
+
+        if ($response->successful()) {
+            $tripayData = $response->json()['data'];
+            return view('payments.bayar', compact('payment', 'tripayData'));
+        } else {
+            return back()->withErrors('Gagal mengambil detail transaksi.');
+        }
+    }
     public function detail(Payment $payment)
     {
         $response = Http::withHeaders([

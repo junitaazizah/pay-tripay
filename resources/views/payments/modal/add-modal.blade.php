@@ -13,13 +13,13 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="customer_name" class="form-label">Nama Pelanggan</label>
-                                <input type="text" class="form-control" id="customer_name" name="customer_name" value="Muhamad Widyantoro" placeholder="Masukkan Nama lengkap" required>
+                                <input type="text" class="form-control" id="customer_name" name="customer_name" value="Dummy" placeholder="Masukkan Nama lengkap" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="customer_email" class="form-label">Email Pelanggan</label>
-                                <input type="email" class="form-control" id="customer_email" name="customer_email" value="contoh@gmail.com" placeholder="Masukkan Email Aktif" required>
+                                <input type="email" class="form-control" id="customer_email" name="customer_email" value="dummy@gmail.com" placeholder="Masukkan Email Aktif" required>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         <label>Kategori pembayaraan</label>
                         <select name="payment_kategori" class="form-select">
                             <option value="#">Silahkan Pilih</option>
-                            <option value="BPJS PESERTA MAGANG">BPJS PESERTA MAGANG</option>
+                            <option value="BPJS PESERTA MAGANG">DUMMY</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -42,8 +42,8 @@
                         <select class="form-select" id="method" name="payment_method" required>
                             <option value="">Pilih metode pembayaran</option>
                             @foreach ($channels as $channel)
-                            <option value="{{ $channel['code'] ?? '' }}">
-                                {{ $channel['name'] ?? 'Unknown' }}
+                            <option value="{{ $channel['code'] }}">
+                                {{ $channel['name'] }}
                             </option>
                             @endforeach
                         </select>

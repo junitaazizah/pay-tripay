@@ -59,8 +59,8 @@
                                         <i class="fas fa-eye"></i> Detail
                                     </a>
                                     @elseif($payment->status === 'Pending')
-                                    <a href="{{ route('payments.detail', $payment) }}" class="btn btn-sm btn-outline-info">
-                                        <i class="fas fa-eye text-danger"></i> Bayar
+                                    <a href="{{ route('payments.bayar', $payment) }}" class="btn btn-sm btn-outline-danger">
+                                        Bayar
                                     </a>
                                     @endif
                                 </div>
